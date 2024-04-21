@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://nl077ueq8pry"]
+
+[ext_resource type="Script" path="res://src/amper.gd" id="1_35cyb"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_q5hjn"]
+
+[node name="Amper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_35cyb")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_q5hjn")
+volume_db = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Record" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "🔴 Record "
+
+[node name="AddEffect" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Add Effect"
+
+[node name="GraphEdit" type="GraphEdit" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+right_disconnects = true
+minimap_enabled = false
+
+[node name="Master" type="GraphNode" parent="VBox/GraphEdit"]
+layout_mode = 0
+offset_left = 658.0
+offset_top = 99.0
+offset_right = 835.0
+offset_bottom = 219.0
+mouse_filter = 1
+position_offset = Vector2(658, 99)
+resizable = true
+title = "Master"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0.839216, 0.254902, 0.882353, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label" type="Label" parent="VBox/GraphEdit/Master"]
+layout_mode = 2
+text = "MASTER"
+
+[connection signal="pressed" from="VBox/HBox/Record" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBox/HBox/AddEffect" to="." method="_on_add_effect_pressed"]
+[connection signal="connection_request" from="VBox/GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="disconnection_request" from="VBox/GraphEdit" to="." method="_on_graph_edit_disconnection_request"]
