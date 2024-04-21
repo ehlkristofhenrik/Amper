@@ -20,53 +20,50 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
 script = ExtResource("1_aov6s")
 
-[node name="TabContainer" type="TabContainer" parent="."]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Pedal" type="TabBar" parent="TabContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="TabContainer/Pedal"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Config" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Config"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Name" type="LineEdit" parent="TabContainer/Config/VBoxContainer"]
+[node name="Name" type="LineEdit" parent="."]
 layout_mode = 2
 placeholder_text = "name"
 
-[node name="Delete" type="Button" parent="TabContainer/Config/VBoxContainer"]
+[node name="Delete" type="Button" parent="."]
 layout_mode = 2
 text = "Delete"
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Config/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="Options" type="OptionButton" parent="TabContainer/Config/VBoxContainer"]
+[node name="Options" type="OptionButton" parent="."]
 layout_mode = 2
 
 [connection signal="slot_updated" from="." to="." method="_on_slot_updated"]
-[connection signal="button_down" from="TabContainer/Pedal/Button" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="TabContainer/Pedal/Button" to="." method="_on_button_button_up"]
-[connection signal="text_changed" from="TabContainer/Config/VBoxContainer/Name" to="." method="_on_name_text_changed"]
-[connection signal="pressed" from="TabContainer/Config/VBoxContainer/Delete" to="." method="_on_delete_pressed"]
-[connection signal="item_selected" from="TabContainer/Config/VBoxContainer/Options" to="." method="_on_options_item_selected"]
+[connection signal="text_changed" from="Name" to="." method="_on_name_text_changed"]
+[connection signal="pressed" from="Delete" to="." method="_on_delete_pressed"]
+[connection signal="item_selected" from="Options" to="." method="_on_options_item_selected"]

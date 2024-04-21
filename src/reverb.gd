@@ -24,14 +24,14 @@ func _ready():
 	set_slot_enabled_left(get_input_port_slot(0), true)
 	set_slot_enabled_right(get_output_port_slot(0), true)
 	for i in classes:
-		$TabContainer/Config/VBoxContainer/Options.add_item( i.new().get_class().replace("AudioEffect","") )
+		$Options.add_item( i.new().get_class().replace("AudioEffect","") )
 	_on_options_item_selected(0)
 
 func _on_options_item_selected(index):
 	
 	instance = classes[index].new()
 	
-	for i in $TabContainer/Config/VBoxContainer.get_children():
+	for i in get_children():
 		if i.is_class("Label") or i.is_class("SpinBox") or i.is_class("CheckBox") or i.is_class("LineEdit"):
 			if i.name != "Name":
 				i.queue_free()
@@ -66,8 +66,8 @@ func _on_options_item_selected(index):
 			input.text = instance.get(i.name)
 			input.text_changed.connect(update_instance)
 		
-		$TabContainer/Config/VBoxContainer.add_child( label )
-		$TabContainer/Config/VBoxContainer.add_child( input )
+		add_child( label )
+		add_child( input )
 
 func update_instance(_v):
 	print(instance)
