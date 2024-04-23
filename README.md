@@ -18,6 +18,15 @@ If you want to have better sound quality I'd advise buying acoustic pickups, an 
 8. Hit Record to activate the amp
 9. ENJOY!
 
+## Building
+1. Setup OpenJDK & Android Studio/Android SDK
+2. Set SDK path in Godot/Editor Settings/Android
+3. Generate debug keystore & set it in the Export menu
+4. If you get a warning, use debug build with administrator privileges (sudo godot/Run as administrator in windows)
+5. Set Record Audio permission in the export tab
+6. Install on device
+7. ENJOY!
+
 # IF YOU MADE SOME CHANGES, YOU NEED TO DISCONNECT & RECONNECT THE NODE TO TAKE EFFECT!
    
 ![image](https://github.com/ehlkristofhenrik/Amper/assets/39805780/d36e33ba-34f4-430f-a9bb-c6ab96f350ae)
