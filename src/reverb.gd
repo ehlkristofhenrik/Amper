@@ -57,6 +57,8 @@ func _on_options_item_selected(index):
 		if input is SpinBox:
 			if i.type == TYPE_FLOAT:
 				input.step = 0.01
+			input.max_value = 5000
+			input.min_value = -5000
 			input.value = instance.get(i.name)
 			input.value_changed.connect(update_instance)
 		elif input is CheckBox:
@@ -74,15 +76,18 @@ func update_instance(_v):
 	for i in get_children():
 		if i.is_class("SpinBox"):
 			var _name = i.get_meta("propname")
-			instance.set(_name, i.value)
+			if _name != null:
+				instance.set(_name, i.value)
 			print(_name, i.value)
 		elif i.is_class("CheckBox"):
 			var _name = i.get_meta("propname")
-			instance.set(_name, i.button_pressed)
+			if _name != null:
+				instance.set(_name, i.button_pressed)
 			print(_name, i.button_pressed)
 		elif i.is_class("LineEdit"):
 			var _name = i.get_meta("propname")
-			instance.set(_name, i.text)
+			if _name != null:
+				instance.set(_name, i.text)
 			print(_name, i.text)
 
 func get_instance():

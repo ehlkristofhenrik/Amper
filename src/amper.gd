@@ -2,6 +2,13 @@ extends Control
 
 var is_playing = false
 var effect = preload("res://scn/effect.tscn")
+var mics = []
+
+func _ready():
+	mics = AudioServer.get_input_device_list()
+	$VBox/HBox/Mic.clear()
+	for i in mics:
+		$VBox/HBox/Mic.add_item(i)
 
 func _on_button_pressed():
 	if is_playing:
@@ -28,6 +35,7 @@ func _on_graph_edit_connection_request(from_node, from_port, to_node, to_port):
 	
 func _on_graph_edit_disconnection_request(from_node, from_port, to_node, to_port):
 	($VBox/GraphEdit as GraphEdit).disconnect_node(from_node, from_port, to_node, to_port)
+	update_audiobus(0)
 
 func update_audiobus(id):
 	for i in range( AudioServer.get_bus_effect_count(id) ):
@@ -48,3 +56,11 @@ func update_audiobus(id):
 		AudioServer.add_bus_effect(id, effect)
 		print(effect)
 	print(AudioServer.get_bus_effect_count(id))
+
+
+func _on_rebuild_pressed():
+	update_audiobus(0)
+
+
+func _on_mic_item_selected(index):
+	AudioServer.input_device = mics[index]
